@@ -1,6 +1,6 @@
 namespace TestApi.Models;
 
-public class RandomUser
+public class RandomUserSet
 {
     public List<Result> results { get; set; }
 

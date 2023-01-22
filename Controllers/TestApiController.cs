@@ -26,20 +26,17 @@ public class TestApiController : ControllerBase
     
     [Route("/users/{n}")]
     [HttpGet()]
-    public async Task<List<RandomUser>> GetNUsers(int n)
+    public async Task<RandomUserSet> GetNUsers(int n)
     {
         using HttpResponseMessage response = await _sharedClient.GetAsync($"?results={n}"); 
         response.EnsureSuccessStatusCode();
 
         var jsonResponse = await response.Content.ReadAsStringAsync();
 
-        RandomUser user = JsonSerializer.Deserialize<RandomUser>(jsonResponse);
+        RandomUserSet user = JsonSerializer.Deserialize<RandomUserSet>(jsonResponse);
 
         System.Console.WriteLine(jsonResponse);
 
-        var users = new List<RandomUser>();
-        users.Add(user);
-
-        return users; 
+        return user;
     }
 }
