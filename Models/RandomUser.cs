@@ -1,10 +1,11 @@
 namespace TestApi.Models;
 
+// TODO change to properties and add json notation
 public class RandomUserSet
 {
-    public List<Result> results { get; set; }
+    public List<User> results { get; set; }
 
-    public class Result
+    public class User
     {
         public Name name { get; set; }
         public string email { get; set; }
