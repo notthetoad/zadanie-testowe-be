@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
 using TestApi.Models;
-// TODO Change services to repository
 using TestApi.Services;
 
 namespace TestApi.Controllers;
@@ -16,10 +14,10 @@ public class TestApiController : ControllerBase
         _service = service;
     }
 
-    [Route("/users/{n}")]
+    [Route("/users/{numberOfUsers}")]
     [HttpGet()]
-    public async Task<RandomUserSet> GetRandomUserSet(int n)
+    public async Task<RandomUserSet> GetRandomUserSet(int numberOfUsers)
     {
-        return await _service.GetRandomUserSet(n);
+        return await _service.GetRandomUserSet(numberOfUsers);
     }
 }

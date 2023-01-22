@@ -4,5 +4,5 @@ namespace TestApi.Services;
 
 public interface IRandomUserService
 {
-    public Task<RandomUserSet> GetRandomUserSet(int n);
+    public Task<RandomUserSet> GetRandomUserSet(int numberOfUsers);
 }

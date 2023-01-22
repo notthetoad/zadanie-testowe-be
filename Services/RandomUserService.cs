@@ -10,15 +10,19 @@ public class RandomUserService : IRandomUserService
         BaseAddress = new Uri("https://randomuser.me/api/")
     };
 
-    public async Task<RandomUserSet> GetRandomUserSet(int n)
+    public async Task<RandomUserSet> GetRandomUserSet(int numberOfUsers)
     {
-        using HttpResponseMessage response = await _sharedClient.GetAsync($"?results={n}"); 
+        if (numberOfUsers < 1)
+        {
+            return new RandomUserSet();
+        }
+        using HttpResponseMessage response = await _sharedClient.GetAsync($"?results={numberOfUsers}"); 
         response.EnsureSuccessStatusCode();
 
         var jsonResponse = await response.Content.ReadAsStringAsync();
 
-        RandomUserSet user = JsonSerializer.Deserialize<RandomUserSet>(jsonResponse);
+        RandomUserSet? user = JsonSerializer.Deserialize<RandomUserSet>(jsonResponse);
 
-        return user;
+        return user!;
     }
 }
